@@ -3,23 +3,23 @@ name: Lint Check
 on:
   pull_request:
     branches:
-      - develop
       - main
 
 jobs:
-  eslint:
+  lint:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v3
-        
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
-          
-      - name: Install Dependencies
-        run: npm ci
-        
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Run ESLint
         run: npx eslint . --ext .js,.jsx,.ts,.tsx
